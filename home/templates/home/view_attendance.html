@@ -1,0 +1,39 @@
+{%  extends "home/main_dashboard.html" %}
+
+{% block dashboard %}
+{% load custom_tags %}
+<table class="table table-stripped table-bordered">
+{% if  'faculty' in request.session %}
+	<thead>
+		<tr>
+			<th>S No.</th>
+			<th>Student Name</th>
+			<th>Total attendance</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for attendance in attendance_data  %}
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<td><a href="{% url 'attendance:day_attendance' attendance.attendance_date %}">{{ attendance.attendance_date }}</a></td>  <!-- attendance.attendance_date -->
+			<!--{% for student in section_data.students_set.all %}-->
+			<!--<td>{{ student.name }}</td>-->
+            <!--{% with attendance.student|split:"," as attndnc %}-->
+            <!--{% with student.pk|int_to_str as studnt_id %}-->
+            <!--<td>{{ attndnc }}</td>-->
+			<!--{% if studnt_id in attndnc %}-->
+			<!--<td>{{ ' Present ' }}</td>-->
+			<!--{% else %}-->
+			<!--<td>{{ ' Absent ' }}</td>-->
+			<!--{% endif %}-->
+            <!--{% endwith %}-->
+            <!--{% endwith %}-->
+			<!--{% endfor %}-->
+			<td>total</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+{% endif %}
+	
+</table>
+{% endblock %}

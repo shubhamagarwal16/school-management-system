@@ -1,0 +1,165 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.disp-none{
+	display: none;
+}
+.faculty_dash_sidebr{
+	    border-right: 1px solid #ccc;
+    box-shadow: 2px 0px 1px 0px #EEE;
+}
+.faculty_dash_sidebr .sidebr_elemnt{
+	    font-weight: 600;
+    font-size: 15px;
+    margin: 15px auto;
+    text-align: center;
+}
+/*.faculty_dash_sidebr p:active{
+	color: red;
+}*/
+.faculty_dash_sidebr .dash_user {
+    background-color: #337ab7;
+    color: white;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 5px 5px 1px 1px;
+}
+.faculty_dash_ryt {
+    border-left: 1px solid #ccc;
+    box-shadow: -2px 0px 1px 0px #EEE;
+}
+.faculty_dash_ryt .add_stdnt{
+	margin-left: 20px;
+}
+.login_btns .faculty_login{
+	margin-left: 10px;
+}
+.cus_navbar{
+	background-color: #135086;
+    border-radius: unset !important;
+    padding: 5px 0px;
+}
+.cus_navbar .navbar-nav li a {
+	color: white;
+    font-size: 16px;
+    /*font-weight: 600;*/
+}
+header{
+	margin-top: 10px; 
+}
+footer{
+	background-image: url('../images/footer-background.png');
+}
+.middl_sectn{
+	min-height: 400px;
+    padding: 40px 0px;
+}
+footer .fotr_follow_us ul{
+	list-style-type: none;
+}
+footer .fotr_follow_us ul li{
+	float: left;
+    margin-right: 10px;
+	border-radius: 50%;
+	/*display: inline;*/
+}
+footer .fotr_follow_u::after{
+	clear: both;
+}
+
+footer .fotr_follow_us ul li a i{	
+    line-height: 50px;
+}
+footer .fotr_follow_us ul li a{
+	color: white;
+    /*padding: 15px 20px;*/
+	display: inline-block;
+    border: 1px solid transparent;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+footer .fotr_follow_us ul li.icnfacebook{
+	background-color: #3B5998;
+}
+footer .fotr_follow_us ul li.icnlinkedin{
+	background-color: #007bb7;
+}
+footer .fotr_follow_us ul li.icnyoutube{
+	background-color: #ff0000;
+}
+footer h4{
+	color: white;
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+footer .row{
+	margin-top: 20px;
+}
+.add_new_student_frm{
+	margin-bottom: 25px;
+    margin-left: 15px;
+}
+.footer_bottm {
+    background-color: #1f1e1e;
+    padding: 6px 5px 0px 5px;
+}
+.footer_bottm p, .footer_bottm a {
+    color: white;
+    margin-bottom: 6px;
+}
+footer .footer-ul-item a {
+    color: white;
+    text-decoration: none;
+}
+footer .footer-ul-item {
+    margin-left: 15px;
+}
+footer .footer-ul-item li {
+    margin-top: 4px;
+}
+.studnt_dash_info{
+	margin-bottom: 25px;
+    margin-left: 15px;
+    padding-top: 15px;
+}
+.studnt_dash_info th, .studnt_dash_info td{
+	border-top: none !important;
+}
+.mar-r-15{
+    margin-right: 15px;
+}
+.mar-l-15{
+    margin-left: 15px;
+}
+.mar-t-15{
+    margin-top: 15px;
+}
+.mar-b-20{
+    margin-bottom: 20px;
+}
+.studnt_nme a small{
+    display: none;
+}
+/*.studnt_nme a span{
+    display: none;
+}*/
+.studnt_nme a:hover small{
+    display: block;
+}
+.studnt_nme a:hover span{
+    display: none;
+}
+#stdnt_logn_form_error{
+   /* border: 1px solid black; */
+}
+.sidebr_elemnt_hdng{
+    text-align: left !important;
+    background-color: #eee;
+    padding: 7px 0px 7px 20px;
+}
+.faculty_dash_ryt{
+    padding-top: 25px;
+}

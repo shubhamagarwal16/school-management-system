@@ -1,0 +1,58 @@
+{%  extends "home/header.html" %}
+
+{% block content %}
+{% load custom_tags %}
+<a class="row mar-b-20 btn btn-warning" href="{% url 'home:dashboard' %}">Back</a>
+{% if  'faculty' in request.session %}
+<h3 class="mar-b-20">{{ studnt_data.name }}</h3>
+    <table class="table table-hover table-stripped">
+        <!--<tr>-->
+            <!--<th>Name:</th>-->
+            <!--<td>{{ studnt_data.name }}</td>-->
+        <!--</tr>-->
+        <tr>
+            <th>Gender:</th>
+            <td>{% if studnt_data.gender == 1 %}{{ 'Male' }}{% else %}{{ 'Female' }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Mother's Name:</th>
+            <td>{{ studnt_data.mother_name }}</td>
+        </tr>
+        <tr>
+            <th>Univ Roll No.:</th>
+            <td>{{ studnt_data.roll_no }}</td>
+        </tr>
+        <tr>
+            <th>E-mail:</th>
+            <td>{{ studnt_data.email }}</td>
+        </tr>
+        <tr>
+            <th>Phone No.:</th>
+            <td>{{ studnt_data.phone }}</td>
+        </tr>
+    </table>
+    <h3>Attendance Day-wise:</h3>
+    <div class="row mar-l-15">
+        {% for attendance in attendance_data %}
+        {% if attendance.faculty == request.session.faculty %}
+        <p class="col-md-6"><span class="mar-r-15">{{ forloop.counter }}</span>{{attendance.attendance_date}}</p>
+
+        {% with attendance.student|split:"," as attndnc %}
+        {% with studnt_data.pk|int_to_str as studnt_id %}
+        {% if studnt_id in attndnc %}
+        <p class="col-md-6"><span  style="background-color: rgb(163, 228, 163)">{{ ' Present ' }}</span></p>
+        {% else %}
+        <p class="col-md-6">{{ ' Absent ' }}</p>
+        {% endif %}
+        {% endwith %}
+        {% endwith %}
+        {% endif %}
+        <div class="clearfix"></div>
+        {% endfor %}
+    </div>
+{% else %}
+<p>You are not authorised to access the page.</p>
+
+{% endif %}
+
+{% endblock %}

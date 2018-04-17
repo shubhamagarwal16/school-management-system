@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      {% load static %}
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" > -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><img src="{% static 'home/images/Logo_SA.png' %}" width="90px" ></p>
+                </div>
+                <div class="col-md-8">
+                  <!---  {% if 'faculty' in request.session %}
+                    {{ request.session.faculty }}
+                    {{ data.name }}
+                    <a href="{% url 'home:logout' %}">Logout</a>
+                    {% else %}
+                    <a href="{% url 'home:index' %}">Login</a>
+                    {% endif %} ---->
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar cus_navbar">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+             <!--  {% if 'faculty' in request.session %}
+              <a class="navbar-brand" href="{% url 'home:dashboard' %}">Dashboard</a>
+              {% endif %} -->
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'home:index' %}">Home</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Page 1-1</a></li>
+                    <li><a href="#">Page 1-2</a></li>
+                    <li><a href="#">Page 1-3</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">                
+                {% if 'faculty' in request.session %}
+                <!-- <li>{{ request.session.faculty }}</li> -->
+                <!-- <li>{{ data.name }}</li> -->
+                <li><a href="{% url 'home:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                {% elif 'student' in request.session %}
+                <li><a href="{% url 'home:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                {% endif %}
+                <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+              </ul>
+            </div>
+          </div>
+        </nav>
+    </header>
+    {% if 'name' in request.COOKIES %}
+    {{ request.cookies.name }}
+    {% endif %}
+    <section class="middl_sectn">
+      <div class="container">
+
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> -->
+            <div {% if message.tags %} class="alert {% if message.tags == 'error' %} {{'alert-danger' }} {% else %} alert-{{ message.tags }} {% endif %} alert-dismissable fade in" {% endif %}>
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        
+        {% block content %}
+
+        {% endblock %}
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h4>Students</h4>
+            <ul class="footer-ul-item">
+              <li><a href="javaScript:void(0)" data-toggle="modal" data-target="#student_login_modl">Login</a></li>
+              <li><a href="javaScript:void(0)">Results</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>Faculty</h4>
+            <ul class="footer-ul-item">
+              <li><a href="javaScript:void(0)" data-toggle="modal" data-target="#faculty_login">Login</a></li>
+              <li><a href="javaScript:void(0)">News</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4 fotr_follow_us">
+            <h4>Follow</h4>
+            <ul>
+              <li class="icnfacebook"><a href="https://www.facebook.com/shubhampisces16" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+              <li class="icnlinkedin"><a href="https://www.linkedin.com/in/agarwal-shubham/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+              <li class="icnyoutube"><a href="https://www.youtube.com/channel/UCpKxP-l2TmG0khYNpjn0o1Q" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row footer_bottm">
+          <div class="col-md-6">
+            <p>&copy; Copyright Shubham | Attendance Management System</p>            
+          </div>
+          <div class="col-md-6 text-right">
+            <p><span><a href="javaScript:void(0)">Policies</a></span> | <span><a href="javaScript:void(0)">T&C</a></span> | <span><a href="javaScript:void(0)">Contact Us</a></span></p>            
+          </div>
+        </div>
+      </div>      
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'home/js/jquery-3.2.1.min.js' %}"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script> -->
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'home/js/ckeditor/ckeditor.js' %}"></script>
+    <script src="{% static 'home/js/custom_js.js' %}"></script>
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace( 'editor1' );
+    </script>
+  </body>
+</html>
+

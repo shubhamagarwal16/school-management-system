@@ -1,0 +1,90 @@
+{%  extends "home/main_dashboard.html" %}
+
+{% block dashboard %}
+
+<div class="studnt_dash_info">    
+    <table class="table">
+        <tr>
+            <th>University Roll No.</th>
+            <td>{{ data.roll_no }}</td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td>{% if data.gender == 1 %} {{ 'Male' }} {% else %} {{ 'Female' }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Mother's Name</th>
+            <td>{{ data.mother_name }}</td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td>{{ data.phone }}</td>
+        </tr>
+        <tr>
+            <th>E-mail</th>
+            <td>{{ data.email }}</td>
+        </tr>
+    </table>
+</div>
+
+<!-- <p class="add_stdnt"><a href="javascript:void(0)" class="add_new_student btn btn-default">Add Student</a></p>
+
+<form method="post" class="add_new_student_frm disp-none" action="{% url 'home:add_student' %}">
+    {% csrf_token %}
+    <div class="row">
+    	<div class="col-md-6">
+    		<input type="hidden" name="id_faculty" value="{{ request.session.faculty }}">
+    		Name: <input type="text" name="name" class="form-control" required > 
+    	</div>
+    	<div class="col-md-6">
+    		Univ Roll No.: <input type="text" name="roll_no" value="{% now 'Y' %}{{ data.section }}" class="form-control" readonly="" >
+    	</div>
+    	<div class="col-md-6">
+    		Phone No. : <input type="text" name="phone_no" class="form-control" required > 
+    	</div>
+    	<div class="col-md-6">
+    		Email: <input type="email" name="email" class="form-control" required > 
+    	</div>
+    	<div class="col-md-6">
+    		Mother's Name: <input type="text" name="mother_name" class="form-control" > 
+    	</div>
+    	<div class="col-md-6">
+    		<label>Gender: <input type="radio" name="gender" value="1" > Male &nbsp;
+    		<input type="radio" name="gender" value="2" > Female </label>
+    	</div>
+    	<div class="col-md-12">
+    		<input type="submit" name="submit" value="Add Student" class="btn form-control btn-success" >
+    	</div>
+    </div>   
+    
+    <!-- Roll No: <input type="text" name="rollno" value="112{% now 'Y' %}" readonly=""> <br> -->    
+    
+<!-- </form> -->
+
+
+<!-- {% with i=1 %} -->
+
+<!-- <table class="table"> -->
+<!-- 	<thead>
+		<tr>
+			<th>S No.</th>
+			<th>Name</th>
+			<th>Univ Roll No.</th>
+			<th>Phone No.</th>
+			<th>E-mail</th>							
+		</tr>
+	</thead>
+	<tbody>
+		{% for students in sectn_data.students_set.all %}
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<td>{{ students.name }}</td>
+			<td>{{ students.roll_no }}</td>
+			<td>{{ students.gender }}</td>
+			<td>{{ students.email }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table> -->
+<!-- {% endwith %} -->
+{% endblock %}

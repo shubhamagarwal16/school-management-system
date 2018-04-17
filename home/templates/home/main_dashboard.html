@@ -1,0 +1,52 @@
+{%  extends "home/header.html" %}
+
+{% block content %}
+
+
+	<!-- <div class="row">
+		<div class="col-md-12">
+			<p>Faculty Dashboard</p>
+
+			<p>Name: {{ data.name }}</p>
+			<p>Section: </p>
+		</div>
+	</div> -->
+	<div class="row">
+		{% if check_msg %} <p>{{ check_msg }}</p>{% endif %}
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="faculty_dash_sidebr">		
+				<div class="dash_user">
+					<p>{{ data.name }}</p>
+					<p>{{ data.section }}</p>
+				</div>	
+				{% if 'faculty' in request.session %}	
+				<p class="sidebr_elemnt"><a href="{% url 'home:dashboard' %}">View Students</a></p>
+				<p class="sidebr_elemnt sidebr_elemnt_hdng">Attendance</p>
+				<p class="sidebr_elemnt"><a href="{% url 'attendance:add_attendance' %}">Today's Attendance</a></p>
+				<p class="sidebr_elemnt"><a href="{% url 'attendance:view_attendance' %}">View Attendance</a></p>
+				<p class="sidebr_elemnt sidebr_elemnt_hdng">View Messages</p>
+				<p class="sidebr_elemnt"><a href="{% url 'attendance:new_faculty_message' %}">New Message</a></p>
+				<p class="sidebr_elemnt"><a href="{% url 'attendance:view_messages' %}">Send Messages</a></p>
+				<p class="sidebr_elemnt"><a href="{% url 'attendance:recieved_messages' %}">Recieved Messages</a></p>
+				{% elif 'student' in request.session %}
+				<p class="sidebr_elemnt"><a href="{% url 'home:dashboard' %}">View Details</a></p>
+				<p class="sidebr_elemnt"><a href="{% url 'attendance:view_attendance' %}">View Attendance</a></p>
+				<p class="sidebr_elemnt"><a href="{% url 'attendance:view_messages' %}">View Messages</a></p>
+				{% endif %}
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="faculty_dash_ryt">
+				{% block dashboard %}
+
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+
+
+
+
+{% endblock %}

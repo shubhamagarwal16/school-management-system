@@ -1,0 +1,68 @@
+{%  extends "home/main_dashboard.html" %}
+
+{% block dashboard %}
+{% load custom_tags %}
+
+{% if 'student' in request.session %}
+
+<span id="send_new_msg_btn" class="btn btn-default mar-b-20 mar-l-15" >New Message</span>
+<div id="send_new_msg_div" class="disp-none mar-b-20 mar-l-15">
+	<form action="{% url 'attendance:view_messages' %}" method="POST">
+		{% csrf_token %}
+		<textarea class="ckeditor" id="editor1" name="msg_txt" ></textarea>
+		<input type="submit" name="submit" value="Send Message" class="btn btn-primary mar-t-15" >
+	</form>
+</div>
+
+<table CLASS="table table-stripped table-hover">
+
+	<thead>
+		<tr>
+			<th>Message</th>
+			<th>Time</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for messag in messages_all  %}
+		<tr>
+		</tr>
+		{% endfor %}
+	</tbody>
+
+</table>
+
+{% elif 'faculty' in request.session %}
+
+<span id="send_new_msg_btn" class="btn btn-default mar-b-20 mar-l-15" >New Message</span>
+<div id="send_new_msg_div" class="disp-none mar-b-20 mar-l-15">
+	<form action="{% url 'attendance:view_messages' %}" method="POST">
+		{% csrf_token %}
+		<textarea class="ckeditor" id="editor1" name="msg_txt" ></textarea>
+		<input type="submit" name="submit" value="Send Message" class="btn btn-primary mar-t-15" >
+	</form>
+</div>
+
+<table CLASS="table table-stripped table-hover">
+
+	<thead>
+		<tr>
+			<th>S No.</th>
+			<th>Message</th>
+			<th>Time</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for messag in messages_all  %}
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<td>{{ messag.message_text }}</td>
+			<td>{{ messag.creation_date }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+
+</table>
+
+{% endif %}
+
+{% endblock %}

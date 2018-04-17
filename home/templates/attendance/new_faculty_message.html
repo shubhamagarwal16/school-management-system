@@ -1,0 +1,28 @@
+{%  extends "home/main_dashboard.html" %}
+
+{% block dashboard %}
+{% load custom_tags %}
+
+{% if 'faculty' in request.session %}
+
+<div id="send_new_msg_div" class="mar-b-20 mar-l-15">
+	<form action="{% url 'attendance:view_messages' %}" method="POST">
+		{% csrf_token %}
+		<h3>Enter your message -</h3>
+		<textarea class="ckeditor" id="editor1" name="msg_txt" ></textarea>
+		<h3>Select students to send -</h3>
+		<label id="select_all_studnts"><input type="checkbox" name="select_all" value="select_all"> Select All</label>
+		<div class="row mar-l-15 mar-t-15">
+			{% for student in student_data %}
+			<div class="col-md-6">
+				<label><input type="checkbox" name="send_message[]" value="{{ student.pk }}"> {{ student.name }}</label>
+			</div>
+			{% endfor %}
+		</div>
+		<input type="submit" name="submit" value="Send Message" class="btn btn-primary mar-t-15" >
+	</form>
+</div>
+
+{% endif %}
+
+{% endblock %}

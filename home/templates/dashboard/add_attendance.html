@@ -1,0 +1,31 @@
+{%  extends "home/main_dashboard.html" %}
+
+{% block dashboard %}
+
+<form method="post" action="{% url 'attendance:today_attendance' %}">
+{% csrf_token %}
+	<table class="table">
+		<thead> 
+			<tr>
+				<th>S No.</th>
+				<th>Name</th>
+				<th class="text-center" colspan="2">Attendance</th>	
+			</tr>
+		</thead>
+		<tbody>		
+			{% for students in sectn_data.students_set.all %}
+			<tr>
+				<td>{{ students.id }}</td>
+				<td>{{ students.name }}</td>
+				<td><label class="add_student_attendance"><input class="add_student_ckbx" type="checkbox" name="present[]" value="{{ students.id }}" >&nbsp; <span>Absent</span></label></td>
+				<!-- <td><label><input type="radio" name="attendance{{ students.id }}" value="0" required="">&nbsp; Absent</label></td> -->
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<input type="hidden" name="section" value="{{ sectn_data.pk }}" >
+	<input type="hidden" name="total_studnt" value="{{ sectn_data.students_set.all.count }}" >
+	<input type="submit" value="Add Attendance" class="btn btn-primary" name="attendance">
+</form>
+
+{% endblock %}

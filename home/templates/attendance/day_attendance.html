@@ -1,0 +1,42 @@
+{%  extends "home/main_dashboard.html" %}
+
+{% block dashboard %}
+{% load custom_tags %}
+<a class="row mar-l-15 row mar-b-20 btn btn-warning" href="{% url 'attendance:view_attendance' %}">Back</a>
+{% if  'faculty' in request.session %}
+	<div class="row mar-l-15">
+        <div class="col-md-6">
+            <p><b><span class="mar-r-15">S No.</span>Name</b></p>
+        </div>
+        <div class="col-md-6">
+            <p><b>Status</b></p>
+        </div>
+        {% for student in section_data.students_set.all %}
+        <div class="col-md-6">
+            <p><span class="mar-r-15">{{ forloop.counter }}.</span>{{ student.name }}</p>
+        </div>
+
+        {% for attendance in attendance_data  %}
+        {% with attendance.student|split:"," as attndnc %}
+            {% with student.pk|int_to_str as studnt_id %}
+			{% if studnt_id in attndnc %}
+            <div class="col-md-6">
+                <span style="background-color: rgb(163, 228, 163)">{{ ' Present ' }}</span>
+            </div>
+			{% else %}
+            <div class="col-md-6">
+                <span>{{ ' Absent ' }}</span>
+            </div>
+			{% endif %}
+            {% endwith %}
+            {% endwith %}
+        {% endfor %}
+        <div class="clearfix"></div>
+        {% endfor %}
+    </div>
+{% else %}
+<p>You are not authorised to access the page.</p>
+
+{% endif %}
+
+{% endblock %}
